@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://kamsikora.com/wsbmi"
+           targetNamespace="http://kamsikora.com/wsbmi"
+           elementFormDefault="qualified">
+
+	<xs:element name="getBMIRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="mass" type="xs:double" />
+				<xs:element name="height" type="xs:double" />
+				<xs:element name="unit" type="tns:unit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getBMIResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="serviceStatus" type="tns:serviceStatus"/>
+				<xs:element name="BMI" type="tns:BMI"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="serviceStatus">
+		<xs:sequence>
+			<xs:element name="value" type="xs:double"/>
+			<xs:element name="message" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BMI">
+		<xs:sequence>
+			<xs:element name="mass" type="xs:double" />
+			<xs:element name="height" type="xs:double" />
+			<xs:element name="unit" type="tns:unit" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="unit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="METRIC"/>
+			<xs:enumeration value="IMPERIAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
